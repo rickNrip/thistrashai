@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:thistrashai/widget_tree.dart';
+import "package:firebase_core/firebase_core.dart";
 
-import 'Pages/home.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'This Trash Ai'),
+      home: const WidgetTree(),
     );
   }
 }

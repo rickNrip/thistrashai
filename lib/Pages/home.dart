@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thistrashai/Pages/imageShow.dart';
+import 'package:thistrashai/auth.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -11,6 +12,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  Future<void> signOut() async{
+    await Auth().signOut();
+  }
+
+    Widget signOutButton(){
+    return ElevatedButton(onPressed: signOut, child: const Text("Sign out"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            SizedBox(height: 700,),
+            signOutButton()
+          ],
+        ),
+      ),
     );
   }
 }
